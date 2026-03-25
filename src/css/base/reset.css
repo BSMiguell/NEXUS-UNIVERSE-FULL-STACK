@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background-primary);
+  color: var(--text-primary);
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    sans-serif;
+  min-height: 100vh;
+  line-height: 1.8;
+  overflow-x: hidden;
+  position: relative;
+  cursor: default;
+  transition:
+    background-color 0.5s ease,
+    color 0.5s ease;
+}
+
+/* Layout básico para evitar CLS */
+.quantum-universe {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+}
+
+.quantum-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--background-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: var(--z-loader);
+  transition: opacity 1s ease;
+}
+
+/* Acessibilidade */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 4px solid var(--quantum-primary);
+  outline-offset: 6px;
+  border-radius: 8px;
+  box-shadow: 0 0 40px var(--quantum-primary);
+}
+
+/* Otimizações de performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Estilos para manter a posição de rolagem */
+body.modal-open::before {
+  content: "";
+  position: fixed;
+  top: var(--scroll-top, 0);
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Remover scroll desnecessário em modais */
+.modal-quantum {
+  overflow: hidden !important;
+}
+
+.modal-content-scroll {
+  overflow-y: auto;
+  max-height: calc(96vh - 40px);
+  padding-right: 5px;
+}
+
+/* Custom Scrollbar para modais */
+.modal-content-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-content-scroll::-webkit-scrollbar-thumb {
+  background: var(--quantum-primary);
+  border-radius: 4px;
+}
+
+/* Correção do bug dos filtros */
+.filter-quantum {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.filter-quantum.hidden-filter {
+  display: none !important;
+}

@@ -1,0 +1,46 @@
+/* Quantum Toast System */
+.quantum-toast {
+  position: fixed;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--dark-gradient);
+  border: 1px solid var(--quantum-primary);
+  color: var(--text-primary);
+  padding: 16px 32px;
+  border-radius: var(--border-radius-full);
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  z-index: var(--z-toast);
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(0, 255, 234, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.quantum-toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.quantum-toast::before {
+  content: "⚡";
+  color: var(--quantum-primary);
+}
+
+/* Light Theme */
+[data-theme="light"] .quantum-toast {
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--text-primary);
+  border-color: #0077b6;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,88 @@
+/* Quantum Empty State System */
+.quantum-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 40px;
+  text-align: center;
+  background: rgba(var(--overlay-background-rgb), 0.4);
+  border-radius: var(--border-radius-xl);
+  border: 1px dashed var(--border-primary);
+  margin: 60px 0;
+  animation: pulseEmpty 4s ease-in-out infinite;
+}
+
+@keyframes pulseEmpty {
+  0%,
+  100% {
+    border-color: var(--border-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 234, 0.05);
+  }
+  50% {
+    border-color: var(--quantum-primary);
+    box-shadow: 0 0 40px rgba(0, 255, 234, 0.15);
+  }
+}
+
+.empty-blackhole {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 40px;
+}
+
+.empty-blackhole-core {
+  position: absolute;
+  inset: 20%;
+  background: #000;
+  border-radius: 50%;
+  box-shadow:
+    0 0 40px var(--quantum-primary),
+    0 0 80px var(--quantum-secondary);
+  z-index: 2;
+}
+
+.empty-blackhole-ring {
+  position: absolute;
+  inset: 0;
+  border: 2px solid transparent;
+  border-top-color: var(--quantum-primary);
+  border-bottom-color: var(--quantum-secondary);
+  border-radius: 50%;
+  animation: spinEmpty 10s linear infinite;
+}
+
+@keyframes spinEmpty {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.empty-title {
+  font-family: "Audiowide", cursive;
+  font-size: 2.2rem;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+  letter-spacing: 4px;
+}
+
+.empty-text {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.reset-empty-btn {
+  padding: 20px 40px;
+  font-size: 1.1rem;
+}
+
+/* Light Theme */
+[data-theme="light"] .quantum-empty {
+  background: rgba(255, 255, 255, 0.6);
+  border-color: rgba(0, 0, 0, 0.1);
+}

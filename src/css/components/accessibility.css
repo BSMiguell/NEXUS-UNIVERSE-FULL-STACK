@@ -1,0 +1,258 @@
+/* ===== MELHORIAS DE ACESSIBILIDADE PARA TEMAS ===== */
+
+/* TEMA MATRIX - Melhorias de contraste para verde em preto */
+[data-theme="matrix"] [class*="text"],
+[data-theme="matrix"] p,
+[data-theme="matrix"] span,
+[data-theme="matrix"] li,
+[data-theme="matrix"] .battle-title,
+[data-theme="matrix"] .card-quantum-title {
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.8),
+    0 0 8px rgba(0, 255, 65, 0.3);
+}
+
+/* TEMA NEON - Verde com sombra para melhor legibilidade */
+[data-theme="neon"] .quantum-card,
+[data-theme="neon"] .battle-title {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* TEMA MIDNIGHT - Violeta com fundo escuro */
+[data-theme="midnight"] p,
+[data-theme="midnight"] span,
+[data-theme="midnight"] li,
+[data-theme="midnight"] .card-quantum-description {
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.7),
+    0 0 8px rgba(138, 43, 226, 0.2);
+}
+
+/* Aumento de contraste para links em temas escuros */
+[data-theme="matrix"] a,
+[data-theme="neon"] a,
+[data-theme="midnight"] a {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* Estados hover com melhor feedback visual */
+[data-theme="matrix"] a:hover,
+[data-theme="neon"] a:hover,
+[data-theme="midnight"] a:hover {
+  filter: brightness(1.3);
+}
+
+/* Borda melhorada em inputs para melhor visibilidade */
+[data-theme="matrix"] input:focus,
+[data-theme="matrix"] button:focus,
+[data-theme="neon"] input:focus,
+[data-theme="neon"] button:focus,
+[data-theme="midnight"] input:focus,
+[data-theme="midnight"] button:focus {
+  outline: 3px solid rgba(255, 255, 255, 0.5) !important;
+  outline-offset: 2px;
+}
+
+/* TEMA BLACK - Contraste máximo */
+[data-theme="black"] * {
+  /* Não precisa de ajustes - contraste já é perfeito */
+}
+
+/* TEMA SEPIA - o texto padrão pode ser escuro demais para sobreposições
+   ou botões com fundo profundo. definir cores claras apenas para os
+   componentes que aparecem sobre fundos escuros (overlay, badges, botões).
+   com a introdução de data-theme para todos os temas, fica fácil segmentar. */
+[data-theme="sepia"] .card-quantum-overlay .card-quantum-description {
+  color: #ffffff;
+}
+[data-theme="sepia"] .quantum-badge,
+[data-theme="sepia"] .quantum-button {
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+[data-theme="sepia"] a {
+  color: var(--quantum-primary);
+}
+
+/* MODO CLARO - Evitar problemas de reflexo */
+[data-theme="light"] {
+  background-color: #f8f9fa;
+}
+
+[data-theme="light"] input,
+[data-theme="light"] textarea,
+[data-theme="light"] select {
+  background-color: #ffffff;
+  border: 2px solid #0077b6;
+  color: #0a0a0f;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  :root {
+    --quantum-primary: #00ffff !important;
+    --quantum-secondary: #ffffff !important;
+    --text-primary: #ffffff !important;
+  }
+
+  * {
+    border-width: 2px !important;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Dark Mode Preference */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  [data-theme="light"],
+  body {
+    color-scheme: light;
+  }
+}
+
+/* Melhorar foco para navegação por teclado */
+:focus-visible {
+  outline: 3px solid var(--quantum-primary) !important;
+  outline-offset: 2px !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+[type="button"]:focus-visible,
+[role="button"]:focus-visible {
+  box-shadow: 0 0 0 4px rgba(var(--quantum-primary-rgb), 0.4) !important;
+}
+
+/* Melhorar visibilidade de labels */
+label {
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
+
+/* Indicadores de erro com cores seguras */
+.error,
+.invalid,
+[aria-invalid="true"] {
+  border-color: var(--quantum-danger) !important;
+  background-color: rgba(var(--quantum-danger-rgb), 0.05) !important;
+  box-shadow: 0 0 0 3px rgba(var(--quantum-danger-rgb), 0.2) !important;
+}
+
+/* Indicadores de sucesso */
+.success,
+.valid,
+[aria-invalid="false"] {
+  border-color: var(--quantum-success) !important;
+  background-color: rgba(var(--quantum-success-rgb), 0.05) !important;
+  box-shadow: 0 0 0 3px rgba(var(--quantum-success-rgb), 0.2) !important;
+}
+
+/* Skip to main content link (acessibilidade essencial) */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--quantum-primary);
+  color: var(--text-primary);
+  padding: 10px 20px;
+  text-decoration: none;
+  z-index: 9999;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Melhora de leitura de fontes em temas escuros */
+[data-theme="matrix"],
+[data-theme="neon"],
+[data-theme="midnight"],
+[data-theme="black"] {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+/* Espaçamento melhorado para melhor leitura */
+p,
+span,
+li {
+  line-height: 1.6;
+  word-spacing: 0.1em;
+}
+
+/* Tamanho mínimo de elementos interativos (44x44px recomendado) */
+button,
+a[role="button"],
+[role="button"],
+input[type="checkbox"],
+input[type="radio"] {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Melhora na visibilidade de placeholders */
+::placeholder {
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+/* Suporte para SVGs com cores temáticas */
+svg {
+  fill: currentColor;
+}
+
+svg path,
+svg circle,
+svg rect,
+svg line,
+svg polyline,
+svg polygon {
+  stroke: currentColor;
+}
+
+/* Melhorar contraste de scrollbar em temas escuros */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(var(--quantum-primary-rgb), 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--quantum-primary);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--quantum-secondary);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-color: var(--quantum-primary) rgba(var(--quantum-primary-rgb), 0.05);
+  scrollbar-width: thin;
+}

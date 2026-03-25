@@ -1,0 +1,27 @@
+/* Base styles */
+@import url("./base/variables.css");
+@import url("./base/reset.css");
+@import url("./base/layout.css");
+
+/* Utilities */
+@import url("./utilities/animations.css");
+
+/* Components */
+@import url("./components/header.css");
+@import url("./components/footer.css");
+@import url("./components/card.css");
+@import url("./components/modal-character.css");
+@import url("./components/modal-search.css");
+@import url("./components/favorites.css");
+@import url("./components/models-page.css");
+@import url("./components/battle-system.css");
+@import url("./components/battle-system-2.css");
+@import url("./components/accessibility.css");
+@import url("./components/preloader.css");
+@import url("./components/filters.css");
+@import url("./components/terminal.css");
+@import url("./components/dashboard.css");
+@import url("./components/empty-state.css");
+@import url("./components/controls.css");
+@import url("./components/pagination.css");
+@import url("./components/toast.css");

@@ -1,0 +1,89 @@
+:root {
+  --quantum-primary: #00ffea;
+  --quantum-secondary: #ff00ff;
+  --quantum-accent: #ffff00;
+  --quantum-danger: #ff2a6d;
+  --quantum-success: #00ff9d;
+  --quantum-warning: #ffaa00;
+  --quantum-gradient: linear-gradient(
+    135deg,
+    #00ffea 0%,
+    #00b3ff 25%,
+    #ff00ff 50%,
+    #ff2a6d 75%,
+    #ffff00 100%
+  );
+  --dark-gradient: linear-gradient(
+    135deg,
+    #0a0a0f 0%,
+    #0f0f1a 25%,
+    #141425 50%,
+    #1a1a30 75%,
+    #1f1f3a 100%
+  );
+  --card-gradient: linear-gradient(
+    145deg,
+    rgba(20, 20, 40, 0.95) 0%,
+    rgba(30, 30, 60, 0.9) 50%,
+    rgba(40, 40, 80, 0.85) 100%
+  );
+  --quantum-glow:
+    0 0 40px rgba(0, 255, 234, 0.7), 0 0 80px rgba(255, 0, 255, 0.5),
+    0 0 120px rgba(255, 42, 109, 0.3);
+  --glass-bg: rgba(15, 15, 30, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-blur: blur(25px);
+  --text-primary: #ffffff;
+  --text-secondary: #b8b8ff;
+  --text-accent: #00ffea;
+  --background-primary: #0a0a0f;
+  --background-secondary: #141425;
+  --border-primary: rgba(0, 255, 234, 0.2);
+  --border-secondary: rgba(0, 255, 234, 0.28);
+  --overlay-background: rgba(10, 10, 15, 0.98);
+  --glass-background: rgba(15, 15, 30, 0.7);
+  --button-background: rgba(6, 18, 30, 0.9);
+  --skeleton-background: rgba(30, 30, 60, 0.8);
+  --border-radius-sm: 16px;
+  --border-radius-md: 24px;
+  --border-radius-lg: 32px;
+  --border-radius-xl: 48px;
+  --border-radius-full: 100px;
+  --transition-quantum: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.3s ease;
+  --z-background: -10;
+  --z-particles: -5;
+  --z-content: 1;
+  --z-modal: 1000;
+  --z-toast: 2000;
+  --z-loader: 3000;
+  --z-controls: 100;
+  --z-theme: 999;
+  --z-favorites-page: 10;
+}
+
+/* Variáveis para modo claro */
+[data-theme="light"] {
+  --text-primary: #0a0a0f;
+  --text-secondary: #333333;
+  --text-accent: #0077b6;
+  --background-primary: #f8f9fa;
+  --background-secondary: #ffffff;
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --card-gradient: linear-gradient(
+    145deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(245, 245, 255, 0.9) 50%,
+    rgba(235, 235, 245, 0.85) 100%
+  );
+  --dark-gradient: linear-gradient(
+    135deg,
+    #f8f9fa 0%,
+    #e9ecef 25%,
+    #dee2e6 50%,
+    #ced4da 75%,
+    #adb5bd 100%
+  );
+}

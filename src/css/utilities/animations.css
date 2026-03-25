@@ -1,0 +1,165 @@
+@keyframes wormholeSpin {
+  0% {
+    transform: rotate(0deg) scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(360deg) scale(0.8);
+    opacity: 0.5;
+  }
+}
+
+@keyframes quantumFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+@keyframes borderRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes particleQuantum {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0) translateZ(0) rotate(0deg) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) translateZ(30px) rotate(90deg)
+      scale(1.2);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(10px) translateX(-15px) translateZ(-20px)
+      rotate(180deg) scale(0.8);
+    opacity: 0.4;
+  }
+  75% {
+    transform: translateY(-15px) translateX(20px) translateZ(40px)
+      rotate(270deg) scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes nebulaFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    transform: translate(50px, -30px) scale(1.1);
+  }
+}
+
+@keyframes quantumSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes starPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes counterPulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes quantumPulse {
+  0%,
+  100% {
+    box-shadow: var(--quantum-glow);
+  }
+  50% {
+    box-shadow:
+      0 0 100px rgba(0, 255, 234, 0.9),
+      0 0 200px rgba(255, 0, 255, 0.7);
+  }
+}
+
+@keyframes quantumAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.6) translateY(150px) rotateX(60deg) rotateY(20deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotateX(0deg) rotateY(0deg);
+  }
+}
+
+@keyframes quantumFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes blackholeSpin {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(1.1);
+  }
+}
+
+@keyframes blackholeOrbit {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes quantumScan {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes borderFlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 400% 400%;
+  }
+}

@@ -1,0 +1,1352 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 222 47% 7%;
+  --foreground: 210 40% 98%;
+  --card: 224 45% 10%;
+  --card-foreground: 210 40% 98%;
+  --primary: 171 77% 64%;
+  --primary-foreground: 222 47% 8%;
+  --secondary: 217 33% 17%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 68%;
+  --accent: 190 80% 60%;
+  --accent-foreground: 222 47% 8%;
+  --border: 215 27% 20%;
+  --input: 215 27% 20%;
+  --ring: 171 77% 64%;
+  --font-display: "Orbitron", sans-serif;
+  --font-body: "Rajdhani", sans-serif;
+  --surface-glow: 45 212 191;
+  --surface-glow-strong: 56 189 248;
+  --surface-copper: 244 178 103;
+  --hero-core-primary: #00ffee;
+  --hero-core-secondary: #ff44cc;
+  --hero-core-tertiary: #ffff00;
+  --hero-core-particle: #9eff00;
+}
+
+* {
+  box-sizing: border-box;
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  background:
+    radial-gradient(circle at top, rgba(var(--surface-glow), 0.22), transparent 24%),
+    radial-gradient(circle at 82% 18%, rgba(var(--surface-glow-strong), 0.1), transparent 18%),
+    radial-gradient(circle at bottom right, rgba(var(--surface-glow-strong), 0.2), transparent 28%),
+    linear-gradient(180deg, rgba(5, 9, 22, 0.96), rgba(8, 11, 18, 0.98)),
+    hsl(var(--background));
+  color: hsl(var(--foreground));
+  background-attachment: fixed;
+}
+
+:root[data-theme-mode="light"] body {
+  background:
+    radial-gradient(circle at top, rgba(var(--surface-glow), 0.14), transparent 26%),
+    radial-gradient(circle at 82% 18%, rgba(var(--surface-glow-strong), 0.1), transparent 18%),
+    radial-gradient(circle at bottom right, rgba(var(--surface-glow), 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(240, 247, 255, 0.98)),
+    hsl(var(--background));
+}
+
+:root[data-theme-mode="light"] {
+  --hero-core-primary: #0891b2;
+  --hero-core-secondary: #7c3aed;
+  --hero-core-tertiary: #f59e0b;
+  --hero-core-particle: #65a30d;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black, transparent 85%);
+  opacity: 0.3;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 100%);
+  background-size: 18px 18px;
+  opacity: 0.04;
+}
+
+.quantum-bg-canvas {
+  opacity: 0.85;
+}
+
+.quantum-bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 84px 84px;
+  mask-image: radial-gradient(circle at center, black 28%, transparent 92%);
+  opacity: 0.24;
+}
+
+.quantum-bg-scanline {
+  background:
+    linear-gradient(180deg, transparent, rgba(34, 211, 238, 0.04), transparent),
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+  background-size: 100% 120px, 100% 100%;
+  animation: quantum-scanline 9s linear infinite;
+  opacity: 0.4;
+}
+
+.quantum-bg-glow {
+  height: 32rem;
+  width: 32rem;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.16;
+}
+
+.quantum-bg-glow-left {
+  left: -8rem;
+  top: 6rem;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.9), transparent 60%);
+}
+
+.quantum-bg-glow-right {
+  right: -10rem;
+  top: 10rem;
+  background: radial-gradient(circle, rgba(217, 70, 239, 0.8), transparent 60%);
+}
+
+.quantum-bg-particles {
+  background-image:
+    radial-gradient(circle at 12% 22%, rgba(255, 255, 255, 0.28) 0 1px, transparent 1px),
+    radial-gradient(circle at 26% 70%, rgba(34, 211, 238, 0.22) 0 1px, transparent 1px),
+    radial-gradient(circle at 48% 18%, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px),
+    radial-gradient(circle at 66% 42%, rgba(255, 255, 255, 0.18) 0 1px, transparent 1px),
+    radial-gradient(circle at 78% 76%, rgba(244, 63, 94, 0.22) 0 1px, transparent 1px),
+    radial-gradient(circle at 92% 28%, rgba(255, 255, 255, 0.2) 0 1px, transparent 1px);
+  animation: quantum-drift 20s linear infinite;
+  opacity: 0.42;
+}
+
+.quantum-loader-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(5, 9, 22, 0.82);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.45),
+    0 0 60px rgba(34, 211, 238, 0.12);
+}
+
+.quantum-loader-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34, 211, 238, 0.14), transparent 26%),
+    radial-gradient(circle at 80% 24%, rgba(244, 63, 94, 0.1), transparent 20%);
+}
+
+.quantum-loader-core {
+  position: relative;
+  height: 180px;
+  width: 180px;
+}
+
+.quantum-loader-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(103, 232, 249, 0.28);
+  animation: quantum-orbit 4.5s linear infinite;
+}
+
+.quantum-loader-ring.delay-1 {
+  inset: 16px;
+  border-style: dashed;
+  animation-duration: 3.2s;
+  animation-direction: reverse;
+}
+
+.quantum-loader-ring.delay-2 {
+  inset: 34px;
+  border-color: rgba(217, 70, 239, 0.22);
+  animation-duration: 2.6s;
+}
+
+.quantum-loader-dot {
+  position: absolute;
+  inset: 62px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(103, 232, 249, 0.95), rgba(56, 189, 248, 0.1));
+  box-shadow: 0 0 40px rgba(103, 232, 249, 0.8);
+  animation: quantum-pulse 1.8s ease-in-out infinite;
+}
+
+body .quantum-hero-shell::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.quantum-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03)),
+    rgba(6, 10, 22, 0.72);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset,
+    0 24px 60px rgba(0, 0, 0, 0.34),
+    0 0 48px rgba(var(--surface-glow), 0.08);
+  backdrop-filter: blur(24px);
+}
+
+:root[data-theme-mode="light"] .quantum-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.72)),
+    rgba(255, 255, 255, 0.76);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.4) inset,
+    0 24px 60px rgba(148, 163, 184, 0.2),
+    0 0 48px rgba(var(--surface-glow), 0.12);
+}
+
+:root[data-theme-mode="light"] .quantum-panel::before {
+  background:
+    linear-gradient(120deg, rgba(var(--surface-glow), 0.05), transparent 28%, transparent 72%, rgba(var(--surface-glow-strong), 0.06));
+}
+
+.quantum-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, rgba(var(--surface-glow), 0.08), transparent 28%, transparent 72%, rgba(var(--surface-glow-strong), 0.08));
+}
+
+.quantum-hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 95%);
+}
+
+.quantum-hero-legacy {
+  clip-path: polygon(0 0, calc(100% - 44px) 0, 100% 44px, 100% 100%, 0 100%);
+  min-height: 78vh;
+}
+
+.quantum-legacy-word {
+  background: linear-gradient(90deg, #ff6a00 0%, #ff4d4d 22%, #7dd3fc 52%, #22d3ee 76%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.quantum-legacy-score {
+  width: fit-content;
+  min-width: 7rem;
+  border-left: 4px solid rgb(34 211 238 / 0.95);
+  background: rgba(71, 85, 105, 0.35);
+  padding: 0.7rem 1.15rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: rgb(34 211 238 / 0.95);
+}
+
+:root[data-theme-mode="light"] .quantum-legacy-score {
+  background: rgba(226, 232, 240, 0.9);
+  border-left-color: rgba(8, 145, 178, 0.95);
+  color: rgb(8 145 178 / 0.95);
+}
+
+.quantum-legacy-stats {
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  gap: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.6rem;
+  background: rgba(6, 26, 30, 0.42);
+  padding: 1.6rem 2rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+:root[data-theme-mode="light"] .quantum-legacy-stats {
+  border-color: rgba(14, 116, 144, 0.14);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 18px 40px rgba(148, 163, 184, 0.14);
+}
+
+.quantum-legacy-stat-value {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1;
+  color: #1d9bf0;
+}
+
+.quantum-legacy-stat-value-gradient {
+  background: linear-gradient(90deg, #f8fafc 0%, #fde047 50%, #f97316 78%, #ef4444 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.quantum-legacy-stat-label {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(241, 245, 249, 0.85);
+}
+
+:root[data-theme-mode="light"] .quantum-legacy-stat-label {
+  color: rgba(15, 23, 42, 0.7);
+}
+
+.quantum-legacy-divider {
+  width: 1px;
+  align-self: stretch;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.85), transparent);
+}
+
+.quantum-legacy-cta {
+  background: rgba(8, 45, 52, 0.82);
+  border: 1px solid rgba(156, 246, 255, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+:root[data-theme-mode="light"] .quantum-legacy-cta {
+  background: rgba(240, 253, 250, 0.88);
+  border-color: rgba(14, 116, 144, 0.22);
+  color: hsl(var(--foreground));
+}
+
+.quantum-legacy-secondary {
+  border: 1px solid rgba(156, 246, 255, 0.3);
+  background: rgba(8, 45, 52, 0.55);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+:root[data-theme-mode="light"] .quantum-legacy-secondary {
+  border-color: rgba(14, 116, 144, 0.18);
+  background: rgba(255, 255, 255, 0.72);
+  color: hsl(var(--foreground));
+}
+
+.quantum-legacy-core {
+  position: relative;
+  height: 32rem;
+  width: 32rem;
+}
+
+.quantum-legacy-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.quantum-legacy-core-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 13rem;
+  width: 13rem;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.9), rgba(167, 139, 250, 0.46) 45%, rgba(34, 211, 238, 0.08) 72%, transparent 78%);
+  box-shadow: 0 0 90px rgba(34, 211, 238, 0.42);
+}
+
+.quantum-legacy-orbit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 999px;
+  transform-origin: center;
+}
+
+.quantum-legacy-orbit-a {
+  width: 24rem;
+  height: 15rem;
+  transform: translate(-50%, -50%) rotate(18deg);
+  border: 3px solid #f8fafc;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  opacity: 0.95;
+}
+
+.quantum-legacy-orbit-b {
+  width: 21rem;
+  height: 14rem;
+  transform: translate(-50%, -50%) rotate(-16deg);
+  border: 3px solid #facc15;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.quantum-legacy-orbit-c {
+  width: 19rem;
+  height: 12rem;
+  transform: translate(-50%, -50%) rotate(34deg);
+  border: 3px solid #d946ef;
+  border-right-color: transparent;
+  border-top-color: transparent;
+}
+
+.quantum-legacy-orbit-d {
+  width: 16rem;
+  height: 10rem;
+  transform: translate(-50%, -50%) rotate(8deg);
+  border: 3px solid #22d3ee;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.quantum-legacy-particles {
+  position: absolute;
+  inset: 0;
+}
+
+.quantum-legacy-particles span {
+  position: absolute;
+  display: block;
+  height: 0.45rem;
+  width: 0.45rem;
+  border-radius: 999px;
+  background: #a3e635;
+  box-shadow: 0 0 12px rgba(163, 230, 53, 0.9);
+}
+
+.quantum-legacy-particles span:nth-child(1) { left: 46%; top: 28%; }
+.quantum-legacy-particles span:nth-child(2) { left: 49%; top: 34%; }
+.quantum-legacy-particles span:nth-child(3) { left: 52%; top: 40%; }
+.quantum-legacy-particles span:nth-child(4) { left: 56%; top: 46%; }
+.quantum-legacy-particles span:nth-child(5) { left: 60%; top: 53%; }
+.quantum-legacy-particles span:nth-child(6) { left: 64%; top: 60%; }
+.quantum-legacy-particles span:nth-child(7) { left: 68%; top: 67%; }
+
+.quantum-hero-noise {
+  background-image:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 100%);
+  background-size: 20px 20px;
+}
+
+.quantum-hero-lines {
+  background:
+    linear-gradient(135deg, transparent 0%, rgba(34, 211, 238, 0.12) 48%, transparent 52%),
+    linear-gradient(225deg, transparent 0%, rgba(244, 63, 94, 0.08) 48%, transparent 52%);
+  mask-image: linear-gradient(180deg, transparent, black 15%, black 85%, transparent);
+}
+
+.quantum-typing-shell {
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+:root[data-theme-mode="light"] .quantum-typing-shell {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-color: rgba(14, 116, 144, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 16px 40px rgba(148, 163, 184, 0.12);
+}
+
+.quantum-typing-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent, rgba(34, 211, 238, 0.08), transparent);
+  animation: quantum-scanline 7s linear infinite;
+  opacity: 0.55;
+}
+
+.quantum-typing-line {
+  position: relative;
+  padding-left: 1.15rem;
+}
+
+.quantum-typing-line::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.3rem;
+  bottom: 0.3rem;
+  width: 2px;
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.8), rgba(244, 63, 94, 0.45));
+  box-shadow: 0 0 18px rgba(34, 211, 238, 0.35);
+}
+
+.quantum-orbit {
+  animation: quantum-orbit 18s linear infinite;
+}
+
+.quantum-orbit-reverse {
+  animation: quantum-orbit-reverse 12s linear infinite;
+}
+
+.quantum-hero-node {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(3, 7, 18, 0.62);
+  padding: 1rem 1.1rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.quantum-hero-node::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg, rgba(34, 211, 238, 0.08), transparent 45%, rgba(217, 70, 239, 0.06));
+}
+
+.quantum-hero-node-icon {
+  color: rgb(125 211 252 / 0.9);
+}
+
+.quantum-hero-node-value {
+  margin-top: 0.8rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: hsl(var(--foreground));
+}
+
+.quantum-hero-node-label {
+  margin-top: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgb(186 230 253 / 0.72);
+}
+
+.quantum-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.home-shortcut {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 10px 24px rgba(0, 0, 0, 0.14);
+}
+
+.home-shortcut.is-active {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 0 24px rgba(var(--surface-glow), 0.18);
+}
+
+:root[data-theme-mode="light"] .home-shortcut {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(148, 163, 184, 0.24) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 12px 28px rgba(148, 163, 184, 0.12);
+}
+
+.home-grid-shell {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(2, 6, 14, 0.5), rgba(4, 8, 18, 0.2));
+}
+
+:root[data-theme-mode="light"] .home-grid-shell {
+  border-color: rgba(148, 163, 184, 0.18);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(241, 245, 249, 0.68));
+}
+
+.quantum-dashboard-node {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.8rem;
+  border: 1px solid rgba(103, 232, 249, 0.16);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+    rgba(4, 8, 18, 0.7);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.quantum-dashboard-node::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(34, 211, 238, 0.9), rgba(217, 70, 239, 0.75));
+  opacity: 0.72;
+}
+
+.quantum-dashboard-node:hover {
+  transform: translateY(-6px);
+  border-color: rgba(34, 211, 238, 0.28);
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(34, 211, 238, 0.12);
+}
+
+.quantum-dashboard-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(103 232 249 / 0.92);
+  filter: drop-shadow(0 0 18px rgba(34, 211, 238, 0.18));
+}
+
+.quantum-dashboard-value {
+  margin-top: 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1;
+  color: hsl(var(--foreground));
+}
+
+.quantum-dashboard-label {
+  margin-top: 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgb(226 232 240 / 0.7);
+}
+
+.quantum-card-react {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.44);
+}
+
+.card-quantum-effect-react {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(45deg, transparent 40%, rgba(34, 211, 238, 0.18) 50%, transparent 60%);
+  transform: translateX(-200%) skewX(-20deg);
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.quantum-card-react:hover .card-quantum-effect-react {
+  transform: translateX(200%) skewX(-20deg);
+}
+
+.card-quantum-frame-react {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border: 2px solid rgba(103, 232, 249, 0.16);
+  border-radius: 2rem;
+  clip-path: polygon(0 0, calc(100% - 46px) 0, 100% 46px, 100% 100%, 46px 100%, 0 calc(100% - 46px));
+  opacity: 0.26;
+  transition: opacity 220ms ease;
+}
+
+.quantum-card-react:hover .card-quantum-frame-react {
+  opacity: 0.72;
+}
+
+.quantum-badge-react {
+  z-index: 5;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.95), rgba(217, 70, 239, 0.85));
+  padding: 0.75rem 1.2rem;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: white;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+}
+
+.quantum-favorite-react {
+  z-index: 5;
+  color: white;
+}
+
+.quantum-image-react {
+  filter: sepia(0.18) contrast(1.08) brightness(0.9);
+  transform: scale(1.08);
+  transition:
+    transform 500ms ease,
+    filter 300ms ease;
+}
+
+.quantum-card-react:hover .quantum-image-react {
+  filter: sepia(0) contrast(1.18) brightness(1.04);
+  transform: scale(1);
+}
+
+.card-quantum-overlay-react {
+  background: linear-gradient(to top, rgba(2, 6, 23, 0.98) 0%, rgba(2, 6, 23, 0.78) 34%, transparent 100%);
+}
+
+.card-quantum-footer-react {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.card-quantum-title-react {
+  letter-spacing: 0.08em;
+  line-height: 0.92;
+  color: white;
+  text-shadow: 0 0 16px rgba(34, 211, 238, 0.16);
+}
+
+.card-quantum-description-react {
+  color: rgba(226, 232, 240, 0.84);
+}
+
+.quantum-actions-react {
+  opacity: 0.96;
+}
+
+.quantum-pagination-react {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.pagination-quantum-react {
+  border: 2px solid rgba(103, 232, 249, 0.16);
+  border-radius: 1rem;
+  background: rgba(2, 6, 23, 0.62);
+  padding: 0.95rem 1.4rem;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: hsl(var(--foreground));
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.pagination-quantum-react:hover:not(:disabled) {
+  transform: translateY(-4px);
+  border-color: rgba(34, 211, 238, 0.42);
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.18);
+}
+
+.pagination-quantum-react:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pagination-terminal-react {
+  border: 1px solid rgba(103, 232, 249, 0.16);
+  border-radius: 1.3rem;
+  background: rgba(2, 6, 23, 0.72);
+  padding: 0.85rem 1.5rem;
+  text-align: center;
+  box-shadow: inset 0 0 20px rgba(34, 211, 238, 0.06);
+}
+
+.pagination-label-react {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(186, 230, 253, 0.65);
+}
+
+.pagination-display-react {
+  margin-top: 0.3rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: white;
+}
+
+.pagination-display-react span {
+  color: rgb(34 211 238 / 0.96);
+}
+
+.cosmos-hero-shell {
+  background:
+    linear-gradient(135deg, rgba(6, 14, 28, 0.94), rgba(4, 10, 24, 0.82) 45%, rgba(17, 10, 14, 0.84)),
+    rgba(4, 7, 18, 0.88);
+}
+
+.cosmos-starfield {
+  background-image:
+    radial-gradient(circle at 14% 22%, rgba(255, 255, 255, 0.85) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 24% 64%, rgba(255, 255, 255, 0.55) 0 1px, transparent 1.2px),
+    radial-gradient(circle at 47% 38%, rgba(186, 230, 253, 0.75) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 63% 17%, rgba(255, 251, 235, 0.82) 0 1px, transparent 1.4px),
+    radial-gradient(circle at 72% 56%, rgba(165, 243, 252, 0.68) 0 1px, transparent 1.3px),
+    radial-gradient(circle at 87% 26%, rgba(255, 255, 255, 0.8) 0 1px, transparent 1.3px),
+    radial-gradient(circle at 82% 74%, rgba(253, 230, 138, 0.72) 0 1px, transparent 1.5px);
+  animation: quantum-drift 24s linear infinite;
+  opacity: 0.7;
+}
+
+.cosmos-aurora {
+  background:
+    radial-gradient(circle at 16% 18%, rgba(56, 189, 248, 0.16), transparent 22%),
+    radial-gradient(circle at 72% 24%, rgba(251, 191, 36, 0.12), transparent 18%),
+    radial-gradient(circle at 50% 84%, rgba(45, 212, 191, 0.1), transparent 24%);
+}
+
+.cosmos-title {
+  background: linear-gradient(90deg, #f8fafc 0%, #dbeafe 18%, #a5f3fc 42%, #fcd34d 72%, #fff7ed 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.cosmos-metric-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    rgba(4, 8, 18, 0.58);
+  padding: 1.2rem 1.25rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 44px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(18px);
+}
+
+.cosmos-metric-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(56, 189, 248, 0.06), transparent 45%, rgba(251, 191, 36, 0.08));
+  pointer-events: none;
+}
+
+.cosmos-metric-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(226, 232, 240, 0.62);
+}
+
+.cosmos-metric-value {
+  margin-top: 0.85rem;
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3vw, 3.1rem);
+  line-height: 1;
+  color: white;
+}
+
+.cosmos-metric-copy {
+  margin-top: 0.65rem;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: rgba(226, 232, 240, 0.68);
+}
+
+.cosmos-side-note {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-radius: 1.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.95rem 1rem;
+  font-size: 0.78rem;
+  line-height: 1.6;
+  color: rgba(226, 232, 240, 0.74);
+  backdrop-filter: blur(18px);
+}
+
+.cosmos-observatory-frame {
+  position: relative;
+  height: 32rem;
+  width: 32rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: radial-gradient(circle, rgba(6, 14, 28, 0.35), rgba(3, 8, 20, 0.02));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    0 0 90px rgba(34, 211, 238, 0.08);
+}
+
+.cosmos-observatory-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 13rem;
+  width: 13rem;
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(165, 243, 252, 0.44), rgba(34, 211, 238, 0.18) 42%, rgba(251, 191, 36, 0.1) 68%, transparent 78%);
+  filter: blur(6px);
+}
+
+.cosmos-orbit-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border-radius: 999px;
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.cosmos-orbit-ring-a {
+  width: 27rem;
+  height: 18rem;
+  transform: translate(-50%, -50%) rotate(12deg);
+  border: 1px solid rgba(125, 211, 252, 0.42);
+  border-right-color: transparent;
+  animation: quantum-orbit 16s linear infinite;
+}
+
+.cosmos-orbit-ring-b {
+  width: 22rem;
+  height: 15rem;
+  transform: translate(-50%, -50%) rotate(-18deg);
+  border: 1px solid rgba(251, 191, 36, 0.38);
+  border-left-color: transparent;
+  animation: quantum-orbit-reverse 12s linear infinite;
+}
+
+.cosmos-orbit-ring-c {
+  width: 18rem;
+  height: 11rem;
+  transform: translate(-50%, -50%) rotate(36deg);
+  border: 1px solid rgba(226, 232, 240, 0.3);
+  border-top-color: transparent;
+  animation: quantum-orbit 10s linear infinite;
+}
+
+.cosmos-signal-node {
+  position: absolute;
+  height: 0.7rem;
+  width: 0.7rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.55);
+}
+
+.cosmos-signal-node-a {
+  left: 18%;
+  top: 30%;
+  background: rgba(165, 243, 252, 0.9);
+}
+
+.cosmos-signal-node-b {
+  right: 18%;
+  top: 24%;
+  background: rgba(253, 224, 71, 0.9);
+}
+
+.cosmos-signal-node-c {
+  bottom: 22%;
+  left: 58%;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.cosmos-primary-cta {
+  border: 1px solid rgba(165, 243, 252, 0.28);
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.92), rgba(12, 74, 110, 0.94) 58%, rgba(15, 118, 110, 0.88));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 18px 38px rgba(8, 47, 73, 0.36);
+}
+
+.cosmos-secondary-cta {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  transition:
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cosmos-primary-cta:hover,
+.cosmos-secondary-cta:hover {
+  transform: translateY(-2px);
+}
+
+.cosmos-primary-cta:active,
+.cosmos-secondary-cta:active {
+  transform: translateY(0);
+}
+
+.cosmos-story-panel,
+.cosmos-command-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(5, 10, 22, 0.74);
+  padding: 1.6rem;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+}
+
+.cosmos-story-panel::before,
+.cosmos-command-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(56, 189, 248, 0.06), transparent 44%, rgba(245, 158, 11, 0.05));
+  pointer-events: none;
+}
+
+.cosmos-signal-card {
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1rem;
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cosmos-signal-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(165, 243, 252, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cosmos-proof-orbit,
+.cosmos-roadmap-stop {
+  position: relative;
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 1.2rem 1.2rem 1.2rem 1.8rem;
+  transition:
+    transform 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cosmos-proof-orbit:hover,
+.cosmos-roadmap-stop:hover {
+  transform: translateY(-4px);
+  border-color: rgba(165, 243, 252, 0.18);
+}
+
+.cosmos-proof-orbit::before,
+.cosmos-roadmap-stop::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 1.5rem;
+  height: 0.55rem;
+  width: 0.55rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(165, 243, 252, 1), rgba(251, 191, 36, 1));
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.28);
+}
+
+.cosmos-model-hero {
+  background:
+    linear-gradient(135deg, rgba(6, 14, 28, 0.94), rgba(3, 10, 20, 0.82) 46%, rgba(20, 14, 10, 0.82)),
+    rgba(4, 7, 18, 0.88);
+}
+
+.cosmos-model-metric {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(4, 8, 18, 0.56);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.cosmos-model-input {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(2, 6, 23, 0.45);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition:
+    border-color 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    background 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cosmos-model-input:focus-within,
+.cosmos-model-input:hover {
+  border-color: rgba(165, 243, 252, 0.22);
+  background: rgba(2, 6, 23, 0.58);
+}
+
+.cosmos-model-card {
+  transition:
+    border-color 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 240ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cosmos-model-card:hover {
+  border-color: rgba(165, 243, 252, 0.16);
+}
+
+.cosmos-model-chip {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(2, 6, 23, 0.5);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+@keyframes quantum-orbit {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes quantum-orbit-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 1280px) {
+  .quantum-hero-legacy {
+    clip-path: none;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .cosmos-hero-shell {
+    border-radius: 2rem;
+  }
+
+  .cosmos-observatory-frame {
+    height: 22rem;
+    width: 22rem;
+  }
+
+  .cosmos-story-panel,
+  .cosmos-command-panel {
+    padding: 1.2rem;
+    border-radius: 1.5rem;
+  }
+
+  .cosmos-metric-card {
+    padding: 1rem;
+  }
+
+  .cosmos-metric-value {
+    font-size: clamp(1.75rem, 8vw, 2.4rem);
+  }
+
+  .cosmos-proof-orbit,
+  .cosmos-roadmap-stop {
+    padding: 1rem 1rem 1rem 1.5rem;
+  }
+
+  .cosmos-model-metric {
+    padding: 1rem;
+  }
+
+  .home-shortcut {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pagination-quantum-react {
+    width: 100%;
+  }
+
+  .pagination-terminal-react {
+    width: 100%;
+    order: -1;
+  }
+
+  .quantum-legacy-stats {
+    width: 100%;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.2rem 1.3rem;
+  }
+
+  .quantum-legacy-score {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cosmos-side-note {
+    align-items: flex-start;
+  }
+
+  .cosmos-metric-label,
+  .pagination-label-react,
+  .quantum-dashboard-label {
+    letter-spacing: 0.18em;
+  }
+
+  .quantum-dashboard-node {
+    padding: 1.4rem 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .cosmos-starfield,
+  .quantum-bg-scanline,
+  .quantum-bg-particles,
+  .quantum-loader-ring,
+  .quantum-loader-dot,
+  .quantum-typing-shell::before,
+  .cosmos-orbit-ring-a,
+  .cosmos-orbit-ring-b,
+  .cosmos-orbit-ring-c,
+  .quantum-orbit,
+  .quantum-orbit-reverse {
+    animation: none !important;
+  }
+
+  .cosmos-primary-cta:hover,
+  .cosmos-secondary-cta:hover,
+  .cosmos-signal-card:hover,
+  .cosmos-proof-orbit:hover,
+  .cosmos-roadmap-stop:hover,
+  .quantum-dashboard-node:hover,
+  .pagination-quantum-react:hover:not(:disabled) {
+    transform: none;
+  }
+}
+
+@keyframes quantum-pulse {
+  0%,
+  100% {
+    transform: scale(0.92);
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes quantum-scanline {
+  from {
+    transform: translateY(-30%);
+  }
+
+  to {
+    transform: translateY(30%);
+  }
+}
+
+@keyframes quantum-drift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-1.5%, 1%, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}

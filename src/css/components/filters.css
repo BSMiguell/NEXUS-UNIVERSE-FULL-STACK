@@ -1,0 +1,133 @@
+/* Quantum Filters */
+.quantum-filters {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-lg);
+  padding: 35px;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.filter-matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 35px;
+  margin-bottom: 35px;
+}
+
+.filter-quantum {
+  position: relative;
+  background: rgba(var(--overlay-background-rgb), 0.8);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  color: var(--text-secondary);
+  padding: 25px 10px;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+}
+
+[data-theme="light"] .filter-quantum {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .filter-quantum:hover,
+[data-theme="light"] .filter-quantum.active {
+  background: rgba(255, 255, 255, 1);
+  color: var(--text-primary);
+}
+
+.filter-quantum::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  background: var(--quantum-gradient);
+  border-radius: var(--border-radius-md);
+  mask:
+    linear-gradient(var(--text-primary) 0 0) content-box,
+    linear-gradient(var(--text-primary) 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: var(--transition-smooth);
+  transform: translateZ(-1px);
+}
+
+.filter-quantum:hover::before,
+.filter-quantum.active::before {
+  opacity: 1;
+}
+
+.filter-quantum:hover,
+.filter-quantum.active {
+  transform: translateY(-15px) scale(1.05) rotateX(5deg);
+  background: rgba(20, 20, 40, 0.95);
+  color: var(--text-primary);
+  box-shadow: var(--quantum-glow);
+}
+
+.filter-badge {
+  display: inline-block;
+  background: rgba(0, 255, 234, 0.1);
+  color: var(--quantum-primary);
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 1rem;
+  margin-left: 15px;
+  font-weight: 700;
+  transition: var(--transition-fast);
+  margin-bottom: 25px;
+  margin-top: 10px;
+  transform: translateZ(10px);
+}
+
+.filter-quantum.active .filter-badge {
+  background: var(--quantum-primary);
+  color: var(--text-primary);
+  box-shadow: 0 0 30px rgba(0, 255, 234, 0.5);
+}
+
+/* Botão para mostrar mais filtros */
+.show-more-filters {
+  grid-column: 1 / -1;
+  background: rgba(0, 255, 234, 0.1);
+  border: 2px solid rgba(0, 255, 234, 0.3);
+  color: var(--text-primary);
+  padding: 20px;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-family: "Rajdhani", sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: var(--transition-smooth);
+  margin-top: 20px;
+  margin: auto;
+  text-align: center;
+}
+
+.show-more-filters:hover {
+  background: rgba(0, 255, 234, 0.2);
+  border-color: var(--quantum-primary);
+  transform: translateY(-5px);
+}
+
+/* Esconder filtros extras inicialmente */
+.filter-quantum.hidden-filter {
+  display: none;
+}

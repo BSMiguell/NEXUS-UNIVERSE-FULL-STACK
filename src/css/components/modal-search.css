@@ -1,0 +1,225 @@
+/* Modal de Pesquisa */
+.modal-search {
+  max-width: 850px;
+  background:
+    linear-gradient(145deg, rgba(8, 22, 38, 0.9), rgba(4, 14, 30, 0.95)),
+    var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border-radius: var(--border-radius-lg);
+  padding: 40px;
+  border: 1px solid rgba(0, 255, 234, 0.2);
+  box-shadow:
+    0 20px 46px rgba(0, 0, 0, 0.45),
+    0 0 22px rgba(0, 255, 234, 0.12);
+}
+
+.modal-search-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.modal-search-title {
+  font-family: "Orbitron", monospace;
+  color: var(--quantum-primary);
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.search-input-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.search-input-quantum {
+  width: 100%;
+  background: rgba(6, 16, 28, 0.88);
+  border: 1px solid rgba(0, 255, 234, 0.45);
+  border-radius: var(--border-radius-md);
+  color: var(--text-primary);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.5rem;
+  padding: 25px 30px 25px 70px;
+  transition: var(--transition-fast);
+}
+
+[data-theme="light"] .search-input-quantum {
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
+}
+
+.search-input-quantum:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(0, 255, 234, 0.2),
+    0 0 26px rgba(0, 255, 234, 0.28);
+}
+
+.search-icon {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.8rem;
+  color: var(--quantum-primary);
+}
+
+.search-results {
+  display: grid;
+  gap: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.search-result-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(14, 24, 40, 0.84);
+  border: 1px solid rgba(0, 255, 234, 0.16);
+  border-radius: var(--border-radius-md);
+  padding: 20px;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+}
+
+[data-theme="light"] .search-result-item {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.search-result-item:hover {
+  border-color: var(--quantum-primary);
+  transform: translateY(-3px) translateZ(14px);
+  box-shadow: 0 12px 24px rgba(0, 255, 234, 0.2);
+}
+
+.search-result-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--quantum-primary);
+}
+
+.search-result-info {
+  flex: 1;
+}
+
+#viewSearchBtn {
+  width: 100%;
+  background:
+    linear-gradient(135deg, rgba(38, 201, 255, 0.92), rgba(0, 121, 206, 0.95)),
+    rgba(7, 20, 32, 0.9);
+  border: 1px solid rgba(150, 233, 255, 0.58);
+  color: var(--text-primary);
+  padding: 20px;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  transform-style: preserve-3d;
+  transform: translateZ(0);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.34),
+    0 0 16px rgba(26, 201, 255, 0.26);
+}
+
+.search-result-name {
+  font-family: "Orbitron", monospace;
+  font-size: 1.8rem;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.search-result-category {
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1.2rem;
+  color: var(--quantum-primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.search-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(0, 255, 234, 0.05);
+  border-radius: var(--border-radius-md);
+}
+
+.search-no-results {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+
+.search-no-results i {
+  font-size: 5rem;
+  margin-bottom: 30px;
+  color: var(--quantum-primary);
+  opacity: 0.5;
+}
+
+.search-no-results h3 {
+  font-family: "Orbitron", monospace;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.search-no-results p {
+  font-size: 1.3rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Custom scrollbar for search results */
+.search-results::-webkit-scrollbar {
+  width: 8px;
+}
+
+.search-results::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.search-results::-webkit-scrollbar-thumb {
+  background: var(--quantum-primary);
+  border-radius: 4px;
+}
+
+.search-result-favorite {
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 50%;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(10px);
+  transform: translateZ(50px);
+}

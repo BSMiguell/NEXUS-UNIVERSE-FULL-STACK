@@ -1,0 +1,519 @@
+/* =============== MODAL 3D v2 - NEXUS UNIVERSE 15/10 =============== */
+:root {
+  --viewer-bg: #050508;
+  --panel-bg: rgba(10, 10, 15, 0.7);
+  --accent-glow: 0 0 20px rgba(var(--quantum-primary-rgb), 0.4);
+}
+
+/* Ajustes no modal pai quando o visualizador está ativo */
+.quantum-modal.viewer-3d-active .modal-quantum {
+  max-width: 95vw;
+  width: 95vw;
+  height: 90vh;
+  padding: 0;
+  overflow: hidden;
+  background: var(--viewer-bg);
+  border: 1px solid rgba(var(--quantum-primary-rgb), 0.3);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+}
+
+.quantum-modal.viewer-3d-active .modal-content-scroll {
+  padding: 0;
+  height: 100%;
+}
+
+.quantum-modal.viewer-3d-active #modalClose {
+    display: none; /* Usamos o close customizado dentro do modal-3d-container */
+}
+
+/* Container Principal */
+.modal-3d-container.immersive-mode {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: radial-gradient(circle at center, #151520 0%, #050508 100%);
+  color: var(--text-primary);
+  font-family: 'Rajdhani', sans-serif;
+  overflow: hidden;
+}
+
+/* Header Superior (Título e Close) */
+.modal-3d-header-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, transparent 100%);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.modal-3d-header-top * {
+    pointer-events: auto;
+}
+
+.modal-3d-title-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quantum-cube-icon {
+  font-size: 1.5rem;
+  color: var(--quantum-primary);
+  filter: drop-shadow(0 0 8px var(--quantum-primary));
+  animation: pulse-glow 2s infinite alternate;
+}
+
+.modal-3d-main-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--text-primary);
+  text-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+.modal-quantum-close-v2 {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(5px);
+}
+
+.modal-quantum-close-v2:hover {
+  background: var(--quantum-primary);
+  color: #000;
+  transform: rotate(90deg) scale(1.1);
+  box-shadow: 0 0 20px var(--quantum-primary);
+}
+
+/* Sidebar Estilo Drawer */
+.modal-3d-sidebar-v2 {
+  position: absolute;
+  left: -300px;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(var(--quantum-primary-rgb), 0.2);
+  z-index: 150;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.modal-3d-sidebar-v2.active {
+  transform: translateX(300px);
+}
+
+.sidebar-toggle {
+  position: absolute;
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 80px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--quantum-primary-rgb), 0.2);
+  border-left: none;
+  border-radius: 0 15px 15px 0;
+  color: var(--quantum-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.sidebar-toggle:hover {
+  background: rgba(var(--quantum-primary-rgb), 0.1);
+  color: var(--text-primary);
+}
+
+.sidebar-content {
+  padding: 80px 20px 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-3d-sidebar-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1rem;
+  color: var(--quantum-primary);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Lista de Modelos */
+.modal-3d-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.modal-3d-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal-3d-item:hover {
+  background: rgba(var(--quantum-primary-rgb), 0.1);
+  border-color: rgba(var(--quantum-primary-rgb), 0.3);
+  transform: translateX(5px);
+}
+
+.modal-3d-item.active {
+  background: var(--quantum-gradient);
+  color: #000;
+  border-color: transparent;
+  box-shadow: 0 0 15px var(--quantum-primary);
+}
+
+.model-item-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.model-item-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Visualizador */
+.modal-3d-viewer-container-v2 {
+  flex: 1;
+  height: 100%;
+  min-height: 520px;
+  position: relative;
+  overflow: hidden;
+}
+
+model-viewer {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  --poster-color: transparent;
+}
+
+/* Footer UI */
+.modal-3d-footer-ui {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.modal-3d-footer-ui * {
+  pointer-events: auto;
+}
+
+/* Nome do Modelo Ativo */
+.active-model-display {
+  position: absolute;
+  top: -150px; /* Acima do footer centralizado */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0.8;
+}
+
+.modal-3d-name-v2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.1);
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Versões v3 (Scrollable Ribbon) */
+.model-versions-v2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.version-label-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.version-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.version-count-badge {
+  background: rgba(var(--quantum-primary-rgb), 0.1);
+  border: 1px solid rgba(var(--quantum-primary-rgb), 0.3);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--quantum-primary);
+}
+
+.version-buttons-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px 0 20px;
+  display: flex;
+  justify-content: center; /* Centraliza se for pouco */
+}
+
+/* Se houver scroll, ajusta alinhamento */
+.version-buttons-scroll-container:has(.version-btn-v3:nth-child(5)) {
+    justify-content: flex-start;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.version-buttons-group {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 5px;
+}
+
+.version-btn-v3 {
+  background: rgba(15, 15, 20, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 8px 16px;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 140px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.btn-indicator {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-content-v3 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.btn-num-v3 {
+  font-size: 0.6rem;
+  font-family: 'Orbitron', sans-serif;
+  opacity: 0.5;
+}
+
+.btn-name-v3 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.version-btn-v3:hover {
+  background: rgba(var(--quantum-primary-rgb), 0.05);
+  border-color: rgba(var(--quantum-primary-rgb), 0.4);
+  transform: translateY(-2px);
+}
+
+.version-btn-v3.active {
+  background: var(--quantum-gradient);
+  border-color: transparent;
+  color: #000;
+  box-shadow: 0 5px 15px rgba(var(--quantum-primary-rgb), 0.4);
+}
+
+.version-btn-v3.active .btn-indicator {
+  background: #000;
+  box-shadow: 0 0 5px #000;
+}
+
+.version-btn-v3.active .btn-num-v3 {
+  opacity: 0.8;
+}
+
+/* Scrollbar Customizada para as Versões */
+.version-buttons-scroll-container::-webkit-scrollbar {
+  height: 3px;
+}
+
+.version-buttons-scroll-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  margin: 0 40px;
+}
+
+.version-buttons-scroll-container::-webkit-scrollbar-thumb {
+  background: var(--quantum-gradient);
+  border-radius: 10px;
+}
+
+/* Dicas de Controle */
+.modal-3d-hints-v2 {
+  display: flex;
+  gap: 30px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  margin-top: 10px;
+}
+
+.hint-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-transform: uppercase;
+}
+
+.hint-item i {
+  color: var(--quantum-primary);
+}
+
+/* Loading v2 */
+.modal-3d-loading-v2 {
+  position: absolute;
+  inset: 0;
+  background: var(--viewer-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 200;
+  transition: opacity 0.8s ease;
+}
+
+.modal-3d-loading-v2.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-scanner {
+  width: 200px;
+  height: 2px;
+  background: rgba(255,255,255,0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.scanner-line {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--quantum-gradient);
+  animation: scanning 1.5s infinite;
+}
+
+.loading-text-v2 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  color: var(--quantum-primary);
+  animation: pulse-text 1.5s infinite;
+}
+
+/* Custom Scrollbar */
+.modal-3d-sidebar-v2 .sidebar-content ::-webkit-scrollbar {
+  width: 4px;
+}
+
+.modal-3d-sidebar-v2 .sidebar-content ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-3d-sidebar-v2 .sidebar-content ::-webkit-scrollbar-thumb {
+  background: rgba(var(--quantum-primary-rgb), 0.3);
+  border-radius: 10px;
+}
+
+/* Animations */
+@keyframes scanning {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes pulse-glow {
+  0% { filter: drop-shadow(0 0 5px var(--quantum-primary)); transform: scale(1); }
+  100% { filter: drop-shadow(0 0 15px var(--quantum-primary)); transform: scale(1.1); }
+}
+
+@keyframes pulse-text {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-3d-name-v2 {
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+  }
+  
+  .version-buttons-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .modal-3d-hints-v2 {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+}

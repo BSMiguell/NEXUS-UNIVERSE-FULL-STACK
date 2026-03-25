@@ -1,0 +1,48 @@
+# Dependencies
+/node_modules
+/server/node_modules
+
+# Build artifacts
+/dist
+/playwright-report
+/test-results
+/.next
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env*.local
+server/prisma/*.db
+server/prisma/*.db-journal
+server/*.db
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+Site-antigos
+
+# Local AI/dev tooling folders
+.agents/
+.ai-sync/
+.augment/
+.claude/
+.cline/
+.continue/
+.github/
+.husky/
+.storybook/
+.trae/
+.windsurf/
+.zencoder/
+.zenflow/

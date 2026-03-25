@@ -1,0 +1,45 @@
+{
+  "bridge": {
+    "name": "kimi-codex-bridge",
+    "version": "1.0.0",
+    "autoSync": true,
+    "syncInterval": 1000,
+    "agents": {
+      "kimi": {
+        "name": "Kimi (Trae IDE)",
+        "id": "kimi-trae",
+        "capabilities": [
+          "code-analysis",
+          "refactoring",
+          "documentation",
+          "testing"
+        ]
+      },
+      "codex": {
+        "name": "Codex (VS Code)",
+        "id": "codex-vscode",
+        "capabilities": [
+          "code-generation",
+          "debugging",
+          "autocompletion",
+          "syntax-correction"
+        ]
+      }
+    }
+  },
+  "syncRules": {
+    "fileExtensions": [".js", ".py", ".ts", ".tsx", ".jsx", ".json", ".md"],
+    "ignorePatterns": ["node_modules/**", ".git/**", "dist/**", "build/**"],
+    "autoTrigger": {
+      "onSave": true,
+      "onChange": true,
+      "onCommand": true
+    }
+  },
+  "notifications": {
+    "onContextChange": true,
+    "onCodeChange": true,
+    "onSuggestion": true,
+    "onError": true
+  }
+}

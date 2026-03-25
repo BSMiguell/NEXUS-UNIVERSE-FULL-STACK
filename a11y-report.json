@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-03-24T22:44:33.206Z",
+  "summary": {
+    "total": 4,
+    "passed": 0,
+    "failed": 4,
+    "skipped": 0
+  },
+  "results": [
+    {
+      "name": "Componentes UI",
+      "status": "failed",
+      "error": "Command failed: find C:\\Users\\Bruno\\Desktop\\main -path \"src/components/**/*.test.tsx\" -type f\nAcesso negado - C:\\USERS\\BRUNO\\DESKTOP\\MAIN\r\nArquivo n�o encontrado  - -PATH\r\nArquivo n�o encontrado  - -TYPE\r\nArquivo n�o encontrado  - F\r\n"
+    },
+    {
+      "name": "Páginas",
+      "status": "failed",
+      "error": "Command failed: find C:\\Users\\Bruno\\Desktop\\main -path \"src/app/**/*.test.tsx\" -type f\nAcesso negado - C:\\USERS\\BRUNO\\DESKTOP\\MAIN\r\nArquivo n�o encontrado  - -PATH\r\nArquivo n�o encontrado  - -TYPE\r\nArquivo n�o encontrado  - F\r\n"
+    },
+    {
+      "name": "Utils",
+      "status": "failed",
+      "error": "Command failed: find C:\\Users\\Bruno\\Desktop\\main -path \"src/utils/**/*.test.ts\" -type f\nAcesso negado - C:\\USERS\\BRUNO\\DESKTOP\\MAIN\r\nArquivo n�o encontrado  - -PATH\r\nArquivo n�o encontrado  - -TYPE\r\nArquivo n�o encontrado  - F\r\n"
+    },
+    {
+      "name": "Geral",
+      "status": "failed",
+      "error": "Command failed: npm test -- --testNamePattern=\"accessibility|a11y\" --coverage\n\u001b[31m\u001b[7m\u001b[31m MISSING DEPENDENCY \u001b[31m\u001b[27m Cannot find dependency '@vitest/coverage-v8'\n\n\u001b[39m"
+    }
+  ]
+}

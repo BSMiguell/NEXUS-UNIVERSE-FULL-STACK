@@ -1,0 +1,9 @@
+# Configuração para act (GitHub Actions local)
+# Instale act: curl https://raw.githubusercontent.com/nektos/act/master/install.sh | bash
+
+# Usar imagem menor para testes locais
+-P ubuntu-latest=catthehacker/ubuntu:act-latest
+
+# Configuração de secrets (adicionar ao .env.local se necessário)
+# GITHUB_TOKEN=your_token_here
+# NPM_TOKEN=your_npm_token_here

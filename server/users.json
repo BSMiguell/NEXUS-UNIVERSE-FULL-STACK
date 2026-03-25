@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "BSMiguell",
+    "email": "savitardeus12@gmail.com",
+    "passwordHash": "$2a$10$ZFVhS.0kDtYnIg1VSt6G0egoJKvJZnVbnXXqcPVXTTjwyDv1hfWk.",
+    "favoriteIds": [
+      1,
+      5,
+      4,
+      2
+    ]
+  }
+]

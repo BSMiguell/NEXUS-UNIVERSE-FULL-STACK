@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Character {
+  id          Int        @id
+  name        String
+  category    String
+  image       String
+  description String
+  model3d     String?
+  detailsJson String
+  statsJson   String
+  favorites   Favorite[]
+}
+
+model User {
+  id              Int              @id
+  name            String
+  email           String           @unique
+  passwordHash    String
+  role            String           @default("viewer")
+  isActive        Boolean          @default(true)
+  favorites       Favorite[]
+  userPermissions UserPermission[]
+}
+
+model Permission {
+  code            String           @id
+  label           String
+  userPermissions UserPermission[]
+}
+
+model UserPermission {
+  userId         Int
+  permissionCode String
+  user           User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  permission     Permission @relation(fields: [permissionCode], references: [code], onDelete: Cascade)
+
+  @@id([userId, permissionCode])
+}
+
+model Favorite {
+  userId      Int
+  characterId Int
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  character    Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+
+  @@id([userId, characterId])
+}
